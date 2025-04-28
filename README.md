@@ -1,23 +1,54 @@
-# Postventa Widget Demo
+# Postventa Login Widget
 
-Pequeño Web Component (`<postventa-widget>`) que muestra un mensaje de saludo.  
-Se empaqueta como un único archivo JS (`dist/postventa-widget.js`) sin dependencias.
+Web Component `<postventa-login>` que muestra un formulario de acceso
+(email + contraseña). Valida en cliente y simula inicio de sesión.  
+Emite un evento **onLogin** con `{ userId, email }`.
 
-## Uso rápido en HTML
+## Uso desde CDN
 
 ```html
-<script type="module" src="https://TU_CDN/postventa-widget.js"></script>
-<postventa-widget></postventa-widget>
+<script type="module"
+  src="https://cdn.jsdelivr.net/gh/USUARIO/postventa-login-widget/dist/postventa-login.js"></script>
+
+<postventa-login></postventa-login>
 ```
 
-## Construcción
-No requiere build; el archivo ya está listo en `dist/`.
+### Escuchar el evento
+```js
+document.querySelector('postventa-login')
+  .addEventListener('onLogin', e => console.log(e.detail));
+```
+
+## Integración en Vue (CDN)
+
+1. Carga el script arriba.  
+2. Vite config:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => tag === 'postventa-login'
+        }
+      }
+    })
+  ]
+})
+```
+
+Luego en tu `.vue`:
+
+```vue
+<template><postventa-login /></template>
+```
 
 ## Estructura
 ```
-postventa-widget-demo/
-├── dist/
-│   └── postventa-widget.js
+postventa-login-widget/
+├── dist/postventa-login.js
 ├── index.html
 └── README.md
 ```
