@@ -2,11 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Demo Postventa Widget</title>
-  <script type="module" src="./dist/postventa-widget.js"></script>
+  <title>Demo Login Widget</title>
+  <script type="module" src="./dist/postventa-login.js"></script>
+  <style>
+    body { display:flex; justify-content:center; align-items:center; height:100vh; margin:0; background:#f7f8fb;}
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif;">
-  <h2>Demo de inclusión del Web Component</h2>
-  <postventa-widget></postventa-widget>
+<body>
+  <postventa-login></postventa-login>
+  <script>
+    document.querySelector('postventa-login')
+      .addEventListener('onLogin', e => console.log('Login ok =>', e.detail));
+  </script>
 </body>
 </html>
